@@ -30,6 +30,8 @@ import * as z from 'zod';
 
 const formSchema = z.object({
   colorTheme: z.enum(['dark', 'light', 'system', '']),
+  accentColor: z.string().default('#437DFB'),
+  backgroundColor: z.string().default('#FFFFFF'),
 });
 
 type Theme = 'dark' | 'light' | 'system';
@@ -46,6 +48,8 @@ export default function AppearancePage() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       colorTheme: data?.settings.colorTheme || (theme as Theme),
+      accentColor: data?.settings.accentColor || '#437DFB',
+      backgroundColor: data?.settings.backgroundColor || '#FFFFFF',
     },
   });
 
@@ -77,6 +81,8 @@ export default function AppearancePage() {
         saveUserSettings({
           ...data.settings,
           colorTheme: values.colorTheme as Theme,
+          accentColor: values.accentColor,
+          backgroundColor: values.backgroundColor,
         }),
         {
           success: t('common.settings.saved'),
@@ -158,6 +164,32 @@ export default function AppearancePage() {
                     )}
                   />
                 ) : null}
+                <FormField
+                  control={form.control}
+                  name="accentColor"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t('pages.settings.appearance.accentColor')}</FormLabel>
+                      <FormControl>
+                        <input type="color" className="h-8 w-16" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="backgroundColor"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t('pages.settings.appearance.backgroundColor')}</FormLabel>
+                      <FormControl>
+                        <input type="color" className="h-8 w-16" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
               </div>
             </div>
           </form>

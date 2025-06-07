@@ -414,6 +414,8 @@
         "title": "Appearance",
         "description": "Customize colors, fonts and view options.",
         "theme": "Theme",
+        "accentColor": "Accent Color",
+        "backgroundColor": "Background Color",
         "inboxType": "Inbox Type"
       },
       "signatures": {
