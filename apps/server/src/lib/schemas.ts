@@ -43,6 +43,8 @@ export const defaultUserSettings = {
   trustedSenders: [],
   isOnboarded: false,
   colorTheme: 'system',
+  accentColor: '#437DFB',
+  backgroundColor: '#FFFFFF',
   zeroSignature: true,
 } satisfies UserSettings;
 
@@ -55,6 +57,8 @@ export const userSettingsSchema = z.object({
   isOnboarded: z.boolean().optional(),
   trustedSenders: z.string().array().optional(),
   colorTheme: z.enum(['light', 'dark', 'system']).default('system'),
+  accentColor: z.string().default('#437DFB'),
+  backgroundColor: z.string().default('#FFFFFF'),
   zeroSignature: z.boolean().default(true),
 });
 
